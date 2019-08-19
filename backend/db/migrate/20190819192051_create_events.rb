@@ -12,9 +12,9 @@ class CreateEvents < ActiveRecord::Migration[5.2]
       t.string :state
       t.integer :zipcode
       t.integer :price
-      t.string :lat
+      t.float :lat
       t.float :long
-      t.float :tag
+      t.string :tag
       t.integer :user_id
     end
   end

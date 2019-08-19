@@ -24,9 +24,9 @@ ActiveRecord::Schema.define(version: 2019_08_19_192051) do
     t.string "state"
     t.integer "zipcode"
     t.integer "price"
-    t.string "lat"
+    t.float "lat"
     t.float "long"
-    t.float "tag"
+    t.string "tag"
     t.integer "user_id"
   end
 
