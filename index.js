@@ -24,9 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
             lng: event.long
         }
         array.push(obj)
-    })
+        })
       
-    plotMarkers(array)
+        plotMarkers(array)
     })
 
     function renderEvent(event){
@@ -83,9 +83,30 @@ document.addEventListener("DOMContentLoaded", () => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
+                'name': event.target[0].value,
+                'description': event.target[1].value,
+                'date': event.target[2].value,
+                'start_time': event.target[3].value,
+                'end_time': event.target[4].value,
+                'address': event.target[5].value,
+                'city': event.target[6].value,
+                'state': event.target[7].value,
+                'zipcode': event.target[8].value,
+                'price': event.target[9].value,
+                'tag': event.target[10].value,
+                'img_url': event.target[15].value,
                 
             })
+            
+
         })
+        .then(res => res.json())
+        .then(newEvent => {
+            renderEvent(newEvent)
+            createEventForm.reset()
+        })
+        debugger
+
     })
     
     ////////////Create Events Modal////////////////////
