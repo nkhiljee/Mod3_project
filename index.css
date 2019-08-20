@@ -1,0 +1,85 @@
+#nav-bar
+{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0px 3px 5px rgba(0,0,0,.07) !important;
+}
+
+.navbar-nav
+{
+   padding: 0 10px;
+   display: flex;
+}
+
+.navbar-nav a
+{
+    float: right !important;
+    text-align: left !important;
+}
+
+.nav-link
+{
+    color: #FFF!important;
+    font-weight: 400;
+    /* font-size: 18px; */
+}
+
+.carousel-caption h5
+{
+    z-index: 10;
+    top: 50%;
+}
+
+#container-search
+{
+    background-image: linear-gradient(rgba(16,19,87,0.9),rgba(16,19,87,0.9)),url(backend/app/assets/images/bg.jpg);
+    background-position: center;
+    height: 200px;
+    padding: 25px;
+    text-align: center;
+    background-color: #101357;
+    color: #FFF;
+}
+
+#events-sub
+{
+    justify-items: center;
+    margin: 10px;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+
+}
+
+.card
+{
+    width: 400px !important;
+    height: 500px !important;
+    margin: 20px;
+}
+
+.subDiv
+{
+    overflow: hidden;
+    white-space: wrap;
+    margin: 20px;
+}
+
+.subDiv h2
+{
+    font-size: 24px
+}
+
+.subDiv h4
+{
+    font-size: 18px
+}
+
+.subDiv h6
+{
+    font-size: 14px;
+    color: #333
+
+}
