@@ -1,10 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+
     var userUrl = "http://localhost:3000/api/v1/users"
     var eventUrl = "http://localhost:3000/api/v1/events"
     var cont_events = document.getElementById("events-sub")
     var myevents = document.getElementById("myevents")
     var array = []
+
 
     fetch(userUrl)
     .then(res => res.json())
@@ -23,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         array.push(obj)
     })
-    // debugger
+      
     plotMarkers(array)
     })
 
@@ -67,14 +69,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
     
         
+
+
+    //Submit button on Create a New Event Form
+    const createEventForm = document.querySelector('#createEventForm')
+    createEventForm.addEventListener('submit', (e) => {
+        e.preventDefault()
+
+
+        fetch('http://localhost:3000/api/v1/events', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                
+            })
+        })
+    })
+    
+    ////////////Create Events Modal////////////////////
+  
+  
     // Get the modal
-    var modal = document.getElementById("myModal");
+    const modal = document.getElementById("myModal");
 
     // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
+    const btn = document.getElementById("myBtn");
 
     // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
+    const span = document.getElementsByClassName("close")[0];
 
     // When the user clicks on the button, open the modal 
     btn.onclick = function() {
@@ -92,8 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
         modal.style.display = "none";
       }
     }
-
-
+    ////////////Create Events Modal END////////////////////
 
 
     ////////////My Events Modal ////////////////////
@@ -163,5 +186,6 @@ document.addEventListener("DOMContentLoaded", () => {
     map.fitBounds();
     }
     ////////////GOOGLE MAPS END////////////////////
+
 
 })
