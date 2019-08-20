@@ -1,8 +1,9 @@
+
 #nav-bar
 {
     position: sticky;
     top: 0;
-    z-index: 10;
+    z-index: 10 !important;
     box-shadow: 0px 3px 5px rgba(0,0,0,.07) !important;
 }
 
@@ -10,11 +11,15 @@
 {
    padding: 0 10px;
    display: flex;
+   z-index: 10 !important;
+
 }
 
 .navbar-nav li
 {
    padding: 0 10px;
+   z-index: 10 !important;
+
 }
 
 .navbar-nav li a
@@ -23,17 +28,22 @@
     text-align: left;
     font-family: Arial;
     font-size: 16px;
+    z-index: 10 !important;
 
 }
 
 .navbar-nav li button
 {
     float: right;
+    z-index: 10 !important;
+
 }
 
 #nav-bar ul li a:hover
 {
    text-shadow: 1px 1px #000000;
+   z-index: 10 !important;
+
 
 }
 
@@ -41,20 +51,24 @@
 {
     color: #FFF!important;
     font-weight: 400;
+    z-index: 10 !important;
+
     /* font-size: 18px; */
 }
 
 .carousel-caption
 {
-    z-index: 10;
     top: 40%;
     font-family: 'Raleway', sans-serif !important;
+    z-index: 0 !important;
+
 }
 
 .carousel-caption h5
 {
     font-size: 72px !important;
     font-weight: lighter !important;
+    z-index: 0 !important;
 
 }
 
@@ -69,27 +83,51 @@
     color: #FFF;
     font-family: 'Raleway', sans-serif !important;
     font-weight: lighter !important;
+}
 
+#container-search button
+{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#container-events
+{
+    /* justify-items: center; */
+
+}
+#button-cont
+{
+    float: top;
+    width: 100%
+}
+
+#button-cont button
+{
+    float: right;
+    margin-top: 20px;
+    margin-right: 50px;
 
 }
 
 #events-sub
 {
-    justify-items: center;
-    margin: 10px;
-    padding: 20px;
+    padding: 10px;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, 33%);
+    grid-column-gap: 10px;
     grid-template-rows: auto;
-
+    justify-items: center;
+    width: 100% !important;
+    overflow: scroll;
 }
 
 .card
 {
-    width: 400px !important;
-    height: 400px !important;
+    width: 85% !important;
+    height: 370px !important;
     margin: 20px;
-
+    /* border-radius: 1em !important; */
 }
 
 .subDiv
@@ -101,20 +139,59 @@
 
 .subDiv h2
 {
-    font-size: 22px
+    font-size: 22px;
+    font-family: 'Raleway', sans-serif !important;
 }
 
 .subDiv h4
 {
-    font-size: 16px
+    font-size: 16px;
+    font-family: 'Raleway', sans-serif !important;
 }
 
 .subDiv h6
 {
     font-size: 12px;
-    color: #333
+    color: #333;
+    font-family: 'Raleway', sans-serif !important;
+}
+
+#container-footer
+{
+    background-color: #101357;
+    height:500px;
+    padding: 50px;
+}
+
+#tags
+{
+    color: white;
+    font-family: 'Raleway', sans-serif !important;
+    margin-left: 100px;
+}
+
+#tags h1
+{
+    margin-bottom: 50px;
+}
+
+#tags h3
+{
+    padding-left: 20px;
+    padding-bottom: 10px;
+}
+
+#tags h3:hover
+{
+    color: #BBB;
 
 }
+
+
+
+
+/* ALL MODALS DOWN HERE */
+
 
 /* The Modal (background) */
 .modal {

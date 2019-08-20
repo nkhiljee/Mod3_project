@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     var eventUrl = "http://localhost:3000/api/v1/events"
     var cont_events = document.getElementById("events-sub")
+    var tag_sort = document.getElementById("tag-display")
 
     fetch(eventUrl)
     .then(res => res.json())
@@ -29,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
         cont_events.append(mainDiv)
     }
 
+
     // Get the modal
     var modal = document.getElementById("myModal");
 
@@ -52,8 +54,20 @@ document.addEventListener("DOMContentLoaded", () => {
     window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
-    }
+      }
     }
 
+
+
+//     function renderSmallCard(event) {
+//         const littleDiv = document.createElement("div")
+//         littleDiv.className = "littlecard shadow-lg"
+//         const h4 = document.createElement("h4")
+//             h4_1.innerText = event.name
+//         const h6 = document.createElement("h6")
+//             h6.innerText = event.address
+//         littleDiv.append(h4, h6)
+//         tag_sort.append(littleDiv)
+//     }
 
 })
