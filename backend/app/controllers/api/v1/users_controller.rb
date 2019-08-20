@@ -3,16 +3,4 @@ class Api::V1::UsersController < ApplicationController
         @users = User.all
         render json: @users, include: :events
     end
-
-    def create
-    
-    end
-
-    def update
-    
-    end
-
-    def destroy
-    
-    end
 end

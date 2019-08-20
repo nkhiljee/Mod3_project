@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     var cont_events = document.getElementById("events-sub")
     var myevents = document.getElementById("myevents")
     var array = []
+    var search = document.getElementById("container-search")
 
 
     fetch(userUrl)
@@ -14,10 +15,14 @@ document.addEventListener("DOMContentLoaded", () => {
         renderMyEvents(user)
     }))
     
+
     fetch(eventUrl)
     .then(res => res.json())
     .then(events => {
+        let dates = []
+        cont_events.innerHTML = ""
         events.forEach(event => {
+<<<<<<< HEAD
         renderEvent(event)
         let obj = {
             lat: event.lat,
@@ -27,26 +32,55 @@ document.addEventListener("DOMContentLoaded", () => {
         })
       
         plotMarkers(array)
+=======
+            renderEvent(event)
+            if (event.user_id == 1){
+                let obj = {
+                    lat: event.lat,
+                    lng: event.long
+                }
+                return array.push(obj)
+            }
+
+            if (!dates.includes(event.date)){
+                let dateBtn = document.createElement("button")
+                dateBtn.innerText = event.date
+                dateBtn.className="btn btn-warning btn-lg"
+                dateBtn.addEventListener('click', ()=>{
+                    cont_events.innerHTML = ""
+                    events.forEach((filteredEvent)=>{
+                        renderEvent(filteredEvent, event.date)
+                    })
+                })
+                dates.push(event.date)
+                search.append(dateBtn)
+            }
+        })
+    plotMarkers(array)
+>>>>>>> 977f9c5cbe3c0bf556ff9c1313bbe91f5d64478b
     })
 
-    function renderEvent(event){
-        const mainDiv = document.createElement("div")
-            mainDiv.className = "card shadow-lg"
-        const image = document.createElement("img")
-            image.src = event.img_url
-        const subDiv = document.createElement("div")
-            subDiv.className="subDiv"
-        const h2 = document.createElement("h2")
-            h2.innerText = event.name
-        const h4 = document.createElement("h4")
-            h4.innerText = event.address
-        const h4_1 = document.createElement("h4")
-            h4_1.innerText = event.date
-        // const h6 = document.createElement("h6")
-            // h6.innerText = event.description
-        subDiv.append(h2, h4, h4_1)
-        mainDiv.append(image, subDiv)
-        cont_events.append(mainDiv)
+
+    function renderEvent(event, filterDate = null){
+        if (filterDate == null || filterDate == event.date) {
+            const mainDiv = document.createElement("div")
+                mainDiv.className = "card shadow-lg"
+            const image = document.createElement("img")
+                image.src = event.img_url
+            const subDiv = document.createElement("div")
+                subDiv.className="subDiv"
+            const h2 = document.createElement("h2")
+                h2.innerText = event.name
+            const h4 = document.createElement("h4")
+                h4.innerText = event.address
+            const h4_1 = document.createElement("h4")
+                h4_1.innerText = event.date
+            // const h6 = document.createElement("h6")
+                // h6.innerText = event.description
+            subDiv.append(h2, h4, h4_1)
+            mainDiv.append(image, subDiv)
+            cont_events.append(mainDiv)
+        }
     }
 
     function renderMyEvents(user) {
