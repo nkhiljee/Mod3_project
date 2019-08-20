@@ -1,14 +1,31 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+    var userUrl = "http://localhost:3000/api/v1/users"
     var eventUrl = "http://localhost:3000/api/v1/events"
     var cont_events = document.getElementById("events-sub")
-    var tag_sort = document.getElementById("tag-display")
+    var myevents = document.getElementById("myevents")
+    var array = []
 
+    fetch(userUrl)
+    .then(res => res.json())
+    .then(users => users.forEach(user => {
+        renderMyEvents(user)
+    }))
+    
     fetch(eventUrl)
     .then(res => res.json())
-    .then(events => events.forEach(event => {
+    .then(events => {
+        events.forEach(event => {
         renderEvent(event)
-    }))
+        let obj = {
+            lat: event.lat,
+            lng: event.long
+        }
+        array.push(obj)
+    })
+    // debugger
+    plotMarkers(array)
+    })
 
     function renderEvent(event){
         const mainDiv = document.createElement("div")
@@ -30,7 +47,26 @@ document.addEventListener("DOMContentLoaded", () => {
         cont_events.append(mainDiv)
     }
 
+    function renderMyEvents(user) {
+        if (user.id == 1) {
+            user.events.forEach(event => {
+                const holdingdiv = document.createElement("div")
+                    holdingdiv.className = holdingdiv
+                const title = document.createElement("h4")
+                    title.innerText = event.name
+                const loc = document.createElement("h6")
+                    loc.innerText = event.address
+                const time = document.createElement("h6")
+                    time.innerText = `${event.start_time} - ${event.end_time}`
+                
+                holdingdiv.append(title, loc, time)
+                myevents.append(holdingdiv)
+            })
+        } 
+    }
 
+    
+        
     // Get the modal
     var modal = document.getElementById("myModal");
 
@@ -59,15 +95,73 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-//     function renderSmallCard(event) {
-//         const littleDiv = document.createElement("div")
-//         littleDiv.className = "littlecard shadow-lg"
-//         const h4 = document.createElement("h4")
-//             h4_1.innerText = event.name
-//         const h6 = document.createElement("h6")
-//             h6.innerText = event.address
-//         littleDiv.append(h4, h6)
-//         tag_sort.append(littleDiv)
-//     }
+
+    ////////////My Events Modal ////////////////////
+
+    // Get the modal
+    var eventmodal = document.getElementById("eventsModal");
+
+    // Get the button that opens the modal
+    var myeventlink = document.getElementById("myeventlink");
+
+    // Get the <span> element that closes the modal
+    var spanevent = document.getElementsByClassName("eventclose")[0];
+
+    // When the user clicks on the button, open the modal 
+    myeventlink.onclick = function() {
+        eventmodal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    spanevent.onclick = function() {
+        eventmodal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(eventr) {
+    if (eventr.target == eventmodal) {
+        eventmodal.style.display = "none";
+        }
+    }
+
+    ////////////My Events Modal  END////////////////////
+
+
+
+    ////////////GOOGLE MAPS////////////////////
+
+
+    var map;
+    
+    window.initMap = function(){
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 40.737109, lng: -73.996799},
+        zoom: 11
+    });
+    }
+    var markers;
+    var bounds;
+
+    function plotMarkers(array)
+    {
+    markers = [];
+    bounds = new google.maps.LatLngBounds();
+
+    array.forEach(function (marker) {
+        var position = new google.maps.LatLng(marker.lat, marker.lng);
+
+        markers.push(
+        new google.maps.Marker({
+            position: position,
+            map: map,
+            animation: google.maps.Animation.DROP
+        })
+        );
+
+        bounds.extend(position);
+    });
+    map.fitBounds();
+    }
+    ////////////GOOGLE MAPS END////////////////////
 
 })
