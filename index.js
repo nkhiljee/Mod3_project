@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function renderEvent(event){
         const mainDiv = document.createElement("div")
-            mainDiv.className = "card"
+            mainDiv.className = "card shadow-lg"
         const image = document.createElement("img")
             image.src = event.img_url
         const subDiv = document.createElement("div")
@@ -22,9 +22,9 @@ document.addEventListener("DOMContentLoaded", () => {
             h4.innerText = event.address
         const h4_1 = document.createElement("h4")
             h4_1.innerText = event.date
-        const h6 = document.createElement("h6")
-            h6.innerText = event.description
-        subDiv.append(h2, h4, h4_1, h6)
+        // const h6 = document.createElement("h6")
+            // h6.innerText = event.description
+        subDiv.append(h2, h4, h4_1)
         mainDiv.append(image, subDiv)
         cont_events.append(mainDiv)
     }
