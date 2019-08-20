@@ -13,6 +13,8 @@ User.destroy_all
 Event.destroy_all
 
 u1 = User.create(name: "Jason Left", email: "jleft@gmail.com", password: "password")
+u2 = User.create(name: "Jason Right", email: "jright@gmail.com", password: "password")
+
 
 # puts result
 
