@@ -11,6 +11,13 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style>
+            /* Set the size of the div element that contains the map */
+           #map {
+             height: 400px;  /* The height is 400 pixels */
+             width: 100%;  /* The width is the width of the web page */
+            }
+    </style>
 </head>
 <body>
     <div id="nav-bar">
@@ -19,7 +26,23 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                    <a class="nav-item nav-link" href="#">My Events</a>
+                    <a class="nav-item nav-link" href="#" id="myeventlink">My Events</a>
+                    <!-- My Events Modal -->
+                    <div id="eventsModal" class="eventmodal">
+                        <div class="modal-content">
+                            <span class="eventclose">&times;</span>
+                            <h3>My Events</h3>
+                            <div class="row">
+                                <div class ="col" id="myevents">
+
+                                </div>
+                                <div class ="col">
+                                    <div id="map"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END My Events Modal -->                    
                     </li>
                     <li class="nav-item">
                     
@@ -187,21 +210,12 @@
         </div>
     </div>
     <div id="container-footer">
-        <!-- <div class="row">
-            <div class="col" id="tags">
-                <h1>Search by Tags</h1>
-                <h3>Convention</h3>
-                <h3>History</h3>
-                <h3>Outreach</h3>
-                <h3>Self Help</h3>
-                <h3>Shows</h3>
-            </div>
-            <div class="col-6" id="tag-display">
-
-            </div>
-        </div> -->
         
     </div>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMsUZdVxb-1l7OCVKWTIWMt1BlyGUQEh0&callback=initMap&language=' + lang" type='text/javascript'>
+    </script>
     <script type="text/javascript" src="index.js"></script>
+    
 </body>
 </html>
