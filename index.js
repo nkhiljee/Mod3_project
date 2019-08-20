@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    var eventUrl = "http://localhost:3000/api/v1/events"
-    var cont_events = document.getElementById("events-sub")
-    var tag_sort = document.getElementById("tag-display")
+    const eventUrl = "http://localhost:3000/api/v1/events"
+    const cont_events = document.getElementById("events-sub")
+    const tag_sort = document.getElementById("tag-display")
 
     fetch(eventUrl)
     .then(res => res.json())
@@ -32,13 +32,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // Get the modal
-    var modal = document.getElementById("myModal");
+    const modal = document.getElementById("myModal");
 
     // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
+    const btn = document.getElementById("myBtn");
 
     // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
+    const span = document.getElementsByClassName("close")[0];
 
     // When the user clicks on the button, open the modal 
     btn.onclick = function() {
@@ -57,17 +57,21 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
+    //Submit button on Create a New Event Form
+    const createEventForm = document.querySelector('#createEventForm')
+    createEventForm.addEventListener('submit', (e) => {
+        e.preventDefault()
 
-
-//     function renderSmallCard(event) {
-//         const littleDiv = document.createElement("div")
-//         littleDiv.className = "littlecard shadow-lg"
-//         const h4 = document.createElement("h4")
-//             h4_1.innerText = event.name
-//         const h6 = document.createElement("h6")
-//             h6.innerText = event.address
-//         littleDiv.append(h4, h6)
-//         tag_sort.append(littleDiv)
-//     }
+        fetch('http://localhost:3000/api/v1/events', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                
+            })
+        })
+    })
+    
 
 })

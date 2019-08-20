@@ -5,7 +5,7 @@ class Api::V1::EventsController < ApplicationController
     end
 
     def create
-    
+        console.log(params)
     end
 
     def update
