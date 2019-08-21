@@ -60,6 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (filterDate == null || filterDate == event.date) {
             const mainDiv = document.createElement("div")
                 mainDiv.className = "card shadow-lg"
+                mainDiv.setAttribute("data-target", "#exampleModalCenter")
             const image = document.createElement("img")
                 image.src = event.img_url
             const subDiv = document.createElement("div")
@@ -98,9 +99,6 @@ document.addEventListener("DOMContentLoaded", () => {
             })
         } 
     }
-
-
-    
 
     ///////////////Create a New Event Form/////////////////
     const createEventForm = document.querySelector('#createEventForm')
@@ -147,21 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 
     ///////////////Create a New Event Form END/////////////////
-    ////////append this btn to the pop up /////////
-    const dltBtn = document.createElement('button')
-    holdingdiv.append(dltBtn)
-    dltBtn.addEventListener('click', ( )=>{
-        fetch('http://localhost:3000/api/v1/events', {
-            method: 'DELETE'
-        })
-        .then(() =>{
 
-        })
-    })
-
-
-    // const createEventExitX = document.querySelector('span.closest.eventclose') 
-    // createEventExitX.addEventListener
     ////////////Create Events Modal////////////////////
   
   
@@ -225,6 +209,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+
+
+
+
     ////////////GOOGLE MAPS////////////////////
 
 
@@ -263,3 +251,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 })
+
