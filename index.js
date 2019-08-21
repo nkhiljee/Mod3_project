@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(res => res.json())
     .then(events => {
         let dates = []
-        const allEvents
+        let allEvents
         cont_events.innerHTML = ""
         events.forEach(event => {
             renderEvent(event)
