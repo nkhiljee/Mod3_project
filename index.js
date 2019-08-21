@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
 
-    var userUrl = "http://localhost:3000/api/v1/users"
+    var userUrl = "http://localhost:3000/api/v1/users/1"
     var eventUrl = "http://localhost:3000/api/v1/events"
     var cont_events = document.getElementById("events-sub")
     var myevents = document.getElementById("myevents")
@@ -9,13 +9,21 @@ document.addEventListener("DOMContentLoaded", () => {
     var search = document.getElementById("container-search")
     let allEventsBtn = document.getElementById("allEvents")
     let allEvents
+<<<<<<< HEAD
+    let activeUser
+    // console.log(array)
+=======
     let footer = document.getElementById("container-footer")
 
+>>>>>>> master
     fetch(userUrl)
-    .then(res => res.json())
-    .then(users => users.forEach(user => {
-        renderMyEvents(user)
-    }))
+        .then(res => res.json())
+        .then(user => {
+            activeUser = user
+            renderMyEvents(user)
+
+            }
+        )
     
 
     fetch(eventUrl)
@@ -146,33 +154,34 @@ document.addEventListener("DOMContentLoaded", () => {
                     title.innerText = event.name
                 const loc = document.createElement("h6")
                     loc.innerText = event.address
+
                 const time = document.createElement("h6")
-                    time.innerText = `${event.start_time} - ${event.end_time}`
+                time.innerText = `${event.start_time} - ${event.end_time}`
                 
                 
 
-                    ///////////////Delete Button/////////////////
+                ///////////////Delete Button/////////////////
 
-                    const dltBtn = document.createElement('button')
-                    dltBtn.type = 'button'
-                    dltBtn.className = 'btn btn-danger btn-sm'
-                    dltBtn.innerText = 'DELETE'
-                    dltBtn.id = 'delete-event'
+                const dltBtn = document.createElement('button')
+                dltBtn.type = 'button'
+                dltBtn.className = 'btn btn-danger btn-sm'
+                dltBtn.innerText = 'DELETE'
+                dltBtn.id = 'delete-event'
 
-                    holdingdiv.append(dltBtn)
-                    dltBtn.addEventListener('click', (e)=>{
-                        fetch(`http://localhost:3000/api/v1/events/${event.id}`, {
-                            method: 'DELETE'
-                        })
-                        .then(() =>{
-                            holdingdiv.remove()
-                            
-                            // debugger
-                        })
+                holdingdiv.append(dltBtn)
+                dltBtn.addEventListener('click', (e)=>{
+                    const card = document.querySelector('.card')
+                    const subDiv = document.querySelector('.subDiv')
+                    fetch(`http://localhost:3000/api/v1/events/${event.id}`, {
+                        method: 'DELETE'
                     })
-                    time.append (dltBtn)
-                    holdingdiv.append(title, loc, time)
-                    myevents.append(holdingdiv)
+                    .then(() =>{
+                        holdingdiv.remove() 
+                    })
+                })
+                time.append (dltBtn)
+                holdingdiv.append(title, loc, time)
+                myevents.append(holdingdiv)
 
             })
         } 
@@ -182,6 +191,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const createEventForm = document.querySelector('#createEventForm')
     createEventForm.addEventListener('submit', (e) => {
         e.preventDefault()
+        newHoldingDiv = document.querySelector('#myevents')
+
 
         // debugger
         fetch('http://localhost:3000/api/v1/events', {
@@ -203,7 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 'tag': event.target[10].value,
                 'img_url': event.target[11].value,
                 'user_id': 1,
-                'lat': 40.756167,   //NEED TO LOOP FOR RANDOM LAT LONG? 
+                'lat': 40.756167,   
                 'long': -73.924149,
 
             })
@@ -212,12 +223,24 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .then(res => res.json())
         .then(newEvent => {
+            let array1 = []
+            let obj = {
+                lat: newEvent.lat,
+                lng: newEvent.long
+            }
             renderEvent(newEvent)
-            renderMyEvents(1)
-            createEventForm.reset()
+            activeUser.events.push(newEvent)
+            newHoldingDiv.innerHTML = ""
+            renderMyEvents(activeUser)
             modal.style.display = "none"
-            
+
+            array1.push(obj)
+            plotMarkers(array1)
+            // console.log(array)
         })
+
+        
+        
         
 
     })
@@ -248,11 +271,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    }
+    window.addEventListener('click', (e) => {
+        const modal1 = document.querySelector('#myModal')
+        if (e.target == modal1) {
+            modal.style.display = "none";
+        }
+    })
     ////////////Create Events Modal END////////////////////
 
 
@@ -285,11 +309,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     ////////////My Events Modal  END////////////////////
-
-
-
-
-
 
 
     ////////////GOOGLE MAPS////////////////////
