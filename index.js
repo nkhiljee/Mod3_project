@@ -94,8 +94,31 @@ document.addEventListener("DOMContentLoaded", () => {
                 const time = document.createElement("h6")
                     time.innerText = `${event.start_time} - ${event.end_time}`
                 
-                holdingdiv.append(title, loc, time)
-                myevents.append(holdingdiv)
+                
+
+                    ///////////////Delete Button/////////////////
+
+                    const dltBtn = document.createElement('button')
+                    dltBtn.type = 'button'
+                    dltBtn.className = 'btn btn-danger btn-sm'
+                    dltBtn.innerText = 'DELETE'
+                    dltBtn.id = 'delete-event'
+
+                    holdingdiv.append(dltBtn)
+                    dltBtn.addEventListener('click', (e)=>{
+                        fetch(`http://localhost:3000/api/v1/events/${event.id}`, {
+                            method: 'DELETE'
+                        })
+                        .then(() =>{
+                            holdingdiv.remove()
+                            
+                            // debugger
+                        })
+                    })
+                    time.append (dltBtn)
+                    holdingdiv.append(title, loc, time)
+                    myevents.append(holdingdiv)
+
             })
         } 
     }
@@ -145,6 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 
     ///////////////Create a New Event Form END/////////////////
+
 
     ////////////Create Events Modal////////////////////
   

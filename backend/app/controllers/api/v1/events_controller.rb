@@ -14,7 +14,8 @@ class Api::V1::EventsController < ApplicationController
     end
 
     def destroy
-    
+        @event = Event.find(params[:id])
+        @event.destroy
     end
 
     private
