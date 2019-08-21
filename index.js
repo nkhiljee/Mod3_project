@@ -60,6 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (filterDate == null || filterDate == event.date) {
             const mainDiv = document.createElement("div")
                 mainDiv.className = "card shadow-lg"
+                mainDiv.setAttribute("data-target", "#exampleModalCenter")
             const image = document.createElement("img")
                 image.src = event.img_url
             const subDiv = document.createElement("div")
@@ -122,9 +123,6 @@ document.addEventListener("DOMContentLoaded", () => {
         } 
     }
 
-
-    
-
     ///////////////Create a New Event Form/////////////////
     const createEventForm = document.querySelector('#createEventForm')
     createEventForm.addEventListener('submit', (e) => {
@@ -170,11 +168,8 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 
     ///////////////Create a New Event Form END/////////////////
-    
 
 
-    // const createEventExitX = document.querySelector('span.closest.eventclose') 
-    // createEventExitX.addEventListener
     ////////////Create Events Modal////////////////////
   
   
@@ -238,6 +233,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+
+
+
+
     ////////////GOOGLE MAPS////////////////////
 
 
@@ -276,3 +275,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 })
+
