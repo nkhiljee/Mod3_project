@@ -7,7 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
     var myevents = document.getElementById("myevents")
     var array = []
     var search = document.getElementById("container-search")
-    var allEventsBtn = document.getElementById("allEvents")
+    let allEventsBtn = document.getElementById("allEvents")
+    let allEvents
 
     fetch(userUrl)
     .then(res => res.json())
@@ -20,7 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(res => res.json())
     .then(events => {
         let dates = []
-        let allEvents
         cont_events.innerHTML = ""
         events.forEach(event => {
             renderEvent(event)
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     lat: event.lat,
                     lng: event.long
                 }
-                return array.push(obj)
+                array.push(obj)
             }
 
             if (!dates.includes(event.date)){
@@ -47,7 +47,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 search.append(dateBtn)
             }
         })
-    plotMarkers(array)
+
+        allEventsBtn.addEventListener("click", () => {
+            cont_events.innerHTML = allEvents
+        })
+
+        plotMarkers(array)
     })
 
 
@@ -70,16 +75,17 @@ document.addEventListener("DOMContentLoaded", () => {
             subDiv.append(h2, h4, h4_1)
             mainDiv.append(image, subDiv)
             cont_events.append(mainDiv)
+        }
+        if (filterDate == null) {
             allEvents = cont_events.innerHTML
         }
-        return allEvents
     }
 
     function renderMyEvents(user) {
         if (user.id == 1) {
             user.events.forEach(event => {
                 const holdingdiv = document.createElement("div")
-                    holdingdiv.className = holdingdiv
+                    holdingdiv.className = "holdingDiv shadow-sm"
                 const title = document.createElement("h4")
                     title.innerText = event.name
                 const loc = document.createElement("h6")
@@ -93,11 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } 
     }
 
-    allEventsBtn.addEventListener("click", () => {
-        cont_events.innerHTML = allEvents
-        debugger
 
-    })
     
 
     //Submit button on Create a New Event Form

@@ -24,20 +24,20 @@ result["events"].slice(0,9).each do |something|
     name = something["name"]["text"]
     img_url = something["logo"]["url"]
     description = something["description"]["text"]
-    Event.create(name: name, img_url: img_url, description: description, date: "08-23-2019", start_time: "7pm", end_time: "11pm", address: "123 Main st", city: "Houston", state: "TX", zipcode: 77004, price: 10, lat: 2.8, long: -187.3, tag: "party", user_id: u1.id)
+    Event.create(name: name, img_url: img_url, description: description, date: "08/23/2019", start_time: "7pm", end_time: "11pm", address: "123 Main st", city: "Houston", state: "TX", zipcode: 77004, price: 10, lat: 2.8, long: -187.3, tag: "party", user_id: u1.id)
 end
 result["events"].slice(12,7).each do |something|
     puts something
     name = something["name"]["text"]
     img_url = something["logo"]["url"]
     description = something["description"]["text"]
-    Event.create(name: name, img_url: img_url, description: description, date: "08-23-2019", start_time: "7pm", end_time: "11pm", address: "123 Main st", city: "Houston", state: "TX", zipcode: 77004, price: 10, lat: 2.8, long: -187.3, tag: "party", user_id: u1.id)
+    Event.create(name: name, img_url: img_url, description: description, date: "08/23/2019", start_time: "7pm", end_time: "11pm", address: "123 Main st", city: "Houston", state: "TX", zipcode: 77004, price: 10, lat: 2.8, long: -187.3, tag: "party", user_id: u1.id)
 end
 result["events"].slice(21,4).each do |something|
     puts something
     name = something["name"]["text"]
     img_url = something["logo"]["url"]
     description = something["description"]["text"]
-    Event.create(name: name, img_url: img_url, description: description, date: "08-23-2019", start_time: "7pm", end_time: "11pm", address: "123 Main st", city: "Houston", state: "TX", zipcode: 77004, price: 10, lat: 2.8, long: -187.3, tag: "party", user_id: u1.id)
+    Event.create(name: name, img_url: img_url, description: description, date: "08/23/2019", start_time: "7pm", end_time: "11pm", address: "123 Main st", city: "Houston", state: "TX", zipcode: 77004, price: 10, lat: 2.8, long: -187.3, tag: "party", user_id: u1.id)
 end
 
