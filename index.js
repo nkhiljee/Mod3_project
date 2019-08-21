@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 'tag': event.target[10].value,
                 'img_url': event.target[11].value,
                 'user_id': 1,
-                'lat': 40.756167,   //NEED TO LOOP FOR RANDOM LAT LONG?
+                'lat': 40.756167,   //NEED TO LOOP FOR RANDOM LAT LONG? 
                 'long': -73.924149,
 
             })
