@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     var myevents = document.getElementById("myevents")
     var array = []
     var search = document.getElementById("container-search")
-
+    var allEventsBtn = document.getElementById("allEvents")
 
     fetch(userUrl)
     .then(res => res.json())
@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(res => res.json())
     .then(events => {
         let dates = []
+        let allEvents
         cont_events.innerHTML = ""
         events.forEach(event => {
             renderEvent(event)
@@ -36,6 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 dateBtn.innerText = event.date
                 dateBtn.className="btn btn-warning btn-lg"
                 dateBtn.addEventListener('click', ()=>{
+                    
                     cont_events.innerHTML = ""
                     events.forEach((filteredEvent)=>{
                         renderEvent(filteredEvent, event.date)
@@ -68,7 +70,9 @@ document.addEventListener("DOMContentLoaded", () => {
             subDiv.append(h2, h4, h4_1)
             mainDiv.append(image, subDiv)
             cont_events.append(mainDiv)
+            allEvents = cont_events.innerHTML
         }
+        return allEvents
     }
 
     function renderMyEvents(user) {
@@ -89,9 +93,12 @@ document.addEventListener("DOMContentLoaded", () => {
         } 
     }
 
-    
-        
+    allEventsBtn.addEventListener("click", () => {
+        cont_events.innerHTML = allEvents
+        debugger
 
+    })
+    
 
     //Submit button on Create a New Event Form
     const createEventForm = document.querySelector('#createEventForm')
