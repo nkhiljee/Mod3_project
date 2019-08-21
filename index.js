@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     
 
-    //Submit button on Create a New Event Form
+    ///////////////Create a New Event Form/////////////////
     const createEventForm = document.querySelector('#createEventForm')
     createEventForm.addEventListener('submit', (e) => {
         e.preventDefault()
@@ -143,6 +143,20 @@ document.addEventListener("DOMContentLoaded", () => {
         
 
     })
+
+    ///////////////Create a New Event Form END/////////////////
+    ////////append this btn to the pop up /////////
+    const dltBtn = document.createElement('button')
+    holdingdiv.append(dltBtn)
+    dltBtn.addEventListener('click', ( )=>{
+        fetch('http://localhost:3000/api/v1/events', {
+            method: 'DELETE'
+        })
+        .then(() =>{
+
+        })
+    })
+
 
     // const createEventExitX = document.querySelector('span.closest.eventclose') 
     // createEventExitX.addEventListener
