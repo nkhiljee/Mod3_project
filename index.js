@@ -9,13 +9,10 @@ document.addEventListener("DOMContentLoaded", () => {
     var search = document.getElementById("container-search")
     let allEventsBtn = document.getElementById("allEvents")
     let allEvents
-<<<<<<< HEAD
     let activeUser
     // console.log(array)
-=======
     let footer = document.getElementById("container-footer")
 
->>>>>>> master
     fetch(userUrl)
         .then(res => res.json())
         .then(user => {
@@ -167,17 +164,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 dltBtn.className = 'btn btn-danger btn-sm'
                 dltBtn.innerText = 'DELETE'
                 dltBtn.id = 'delete-event'
-
+                
                 holdingdiv.append(dltBtn)
                 dltBtn.addEventListener('click', (e)=>{
-                    const card = document.querySelector('.card')
-                    const subDiv = document.querySelector('.subDiv')
+                    
                     fetch(`http://localhost:3000/api/v1/events/${event.id}`, {
                         method: 'DELETE'
                     })
                     .then(() =>{
-                        holdingdiv.remove() 
+                        holdingdiv.remove()
                     })
+                    
                 })
                 time.append (dltBtn)
                 holdingdiv.append(title, loc, time)
@@ -237,6 +234,7 @@ document.addEventListener("DOMContentLoaded", () => {
             array1.push(obj)
             plotMarkers(array1)
             // console.log(array)
+            window.alert("Hello world!");
         })
 
         

@@ -10,7 +10,9 @@ class Api::V1::EventsController < ApplicationController
     end
 
     def update
-    
+        @event = Event.find(params[:id])
+        @event.update
+        render json: @event, status: 201
     end
 
     def destroy
