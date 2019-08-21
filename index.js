@@ -22,17 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
         let dates = []
         cont_events.innerHTML = ""
         events.forEach(event => {
-<<<<<<< HEAD
-        renderEvent(event)
-        let obj = {
-            lat: event.lat,
-            lng: event.long
-        }
-        array.push(obj)
-        })
-      
-        plotMarkers(array)
-=======
             renderEvent(event)
             if (event.user_id == 1){
                 let obj = {
@@ -57,7 +46,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         })
     plotMarkers(array)
->>>>>>> 977f9c5cbe3c0bf556ff9c1313bbe91f5d64478b
     })
 
 
@@ -110,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
     createEventForm.addEventListener('submit', (e) => {
         e.preventDefault()
 
-
+        // debugger
         fetch('http://localhost:3000/api/v1/events', {
             method: 'POST',
             headers: {
@@ -128,8 +116,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 'zipcode': event.target[8].value,
                 'price': event.target[9].value,
                 'tag': event.target[10].value,
-                'img_url': event.target[15].value,
-                
+                'img_url': event.target[11].value,
+                'user_id': 1,
+                'lat': 40.756167,   //NEED TO LOOP FOR RANDOM LAT LONG?
+                'long': -73.924149,
+
             })
             
 
@@ -137,12 +128,17 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(res => res.json())
         .then(newEvent => {
             renderEvent(newEvent)
+            renderMyEvents(1)
             createEventForm.reset()
+            modal.style.display = "none"
+            
         })
-        debugger
+        
 
     })
-    
+
+    // const createEventExitX = document.querySelector('span.closest.eventclose') 
+    // createEventExitX.addEventListener
     ////////////Create Events Modal////////////////////
   
   
