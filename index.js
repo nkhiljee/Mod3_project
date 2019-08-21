@@ -183,17 +183,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 dltBtn.className = 'btn btn-warning btn-sm'
                 dltBtn.innerText = 'DELETE'
                 dltBtn.id = 'delete-event'
-
+                
                 holdingdiv.append(dltBtn)
                 dltBtn.addEventListener('click', (e)=>{
-                    const card = document.querySelector('.card')
-                    const subDiv = document.querySelector('.subDiv')
+                    
                     fetch(`http://localhost:3000/api/v1/events/${event.id}`, {
                         method: 'DELETE'
                     })
                     .then(() =>{
-                        holdingdiv.remove() 
+                        holdingdiv.remove()
                     })
+                    
                 })
 
                 time.append (dltBtn)
@@ -256,6 +256,7 @@ document.addEventListener("DOMContentLoaded", () => {
             array1.push(obj)
             plotMarkers(array1)
             // console.log(array)
+            window.alert("Hello world!");
         })
 
         
