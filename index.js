@@ -9,13 +9,10 @@ document.addEventListener("DOMContentLoaded", () => {
     var search = document.getElementById("container-search")
     let allEventsBtn = document.getElementById("allEvents")
     let allEvents
-<<<<<<< HEAD
     let activeUser
-    // console.log(array)
-=======
     let footer = document.getElementById("container-footer")
+    let deleteEvent = document.getElementById("deleteEvent")
 
->>>>>>> master
     fetch(userUrl)
         .then(res => res.json())
         .then(user => {
@@ -130,15 +127,34 @@ document.addEventListener("DOMContentLoaded", () => {
                 modaldate.innerText = event.date
             const modalimage = document.createElement("img")
                 modalimage.src = event.img_url
+            const updatebtn = document.createElement("button")
+                updatebtn.className = "btn btn-warning"
+                updatebtn.innerText = "Update"
+            const deletebtn = document.createElement("button")
+                deletebtn.className = "btn btn-danger"
+                deletebtn.innerText = "Delete"
+                deletebtn.id = "deleteEvent"
+
 
             modalbutton.append(modalspan)
             fourthDiv.append(modaltitle, modalbutton)
-            modalbody.append(modalimage, modaldate, time, address, address2, price, h6)
+            modalbody.append(modalimage, modaldate, time, address, address2, price, h6, updatebtn, deletebtn)
             thirdDiv.append(fourthDiv, modalbody)
             secondDiv.append(thirdDiv)
             firstDiv.append(secondDiv)    
             footer.append(firstDiv)  
 
+            // const holdingdiv = document.getElementById("holdingDiv")
+             
+            // deletebtn.addEventListener('click', (e)=>{
+            //     fetch(`http://localhost:3000/api/v1/events/${event.id}`, {
+            //         method: 'DELETE'
+            //     })
+            //     .then(() =>{
+            //         mainDiv.remove() 
+            //         holdingdiv.remove()
+            //     })
+            // })
         }
         if (filterDate == null) {
             allEvents = cont_events.innerHTML
@@ -164,7 +180,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 const dltBtn = document.createElement('button')
                 dltBtn.type = 'button'
-                dltBtn.className = 'btn btn-danger btn-sm'
+                dltBtn.className = 'btn btn-warning btn-sm'
                 dltBtn.innerText = 'DELETE'
                 dltBtn.id = 'delete-event'
 
@@ -179,6 +195,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         holdingdiv.remove() 
                     })
                 })
+
                 time.append (dltBtn)
                 holdingdiv.append(title, loc, time)
                 myevents.append(holdingdiv)
@@ -186,6 +203,8 @@ document.addEventListener("DOMContentLoaded", () => {
             })
         } 
     }
+
+
 
     ///////////////Create a New Event Form/////////////////
     const createEventForm = document.querySelector('#createEventForm')

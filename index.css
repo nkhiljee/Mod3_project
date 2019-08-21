@@ -290,7 +290,7 @@
 
 .holdingDiv h6 button
 {
-    transform: translateY(-20%);
+    transform: translateY(-40%);
 }
 
 
@@ -426,6 +426,11 @@
 .modal-body img
 {
     margin-bottom: 10px;
+}
+
+.modal-body button
+{
+    margin: 5px;
 }
 
 
