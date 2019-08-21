@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     var search = document.getElementById("container-search")
     let allEventsBtn = document.getElementById("allEvents")
     let allEvents
+    let footer = document.getElementById("container-footer")
 
     fetch(userUrl)
     .then(res => res.json())
@@ -60,7 +61,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (filterDate == null || filterDate == event.date) {
             const mainDiv = document.createElement("div")
                 mainDiv.className = "card shadow-lg"
-                mainDiv.setAttribute("data-target", "#exampleModalCenter")
+                mainDiv.setAttribute("data-target", `#exampleModalCenter${event.id}`)
+                mainDiv.setAttribute("data-toggle", "modal")
             const image = document.createElement("img")
                 image.src = event.img_url
             const subDiv = document.createElement("div")
@@ -69,13 +71,66 @@ document.addEventListener("DOMContentLoaded", () => {
                 h2.innerText = event.name
             const h4 = document.createElement("h4")
                 h4.innerText = event.address
+            const address2 = document.createElement("h4")
+                address2.innerText = `${event.city}, ${event.state} ${event.zipcode}`
+            const price = document.createElement("h4")
+                price.innerText = `Price: ${event.price}`
             const h4_1 = document.createElement("h4")
                 h4_1.innerText = event.date
-            // const h6 = document.createElement("h6")
-                // h6.innerText = event.description
+            const time = document.createElement("h4")
+                time.innerText = `${event.start_time} - ${event.end_time}`
+            const h6 = document.createElement("h6")
+                h6.innerText = event.description
+
             subDiv.append(h2, h4, h4_1)
             mainDiv.append(image, subDiv)
             cont_events.append(mainDiv)
+
+            const firstDiv = document.createElement("div")
+                firstDiv.className = "modal fade"
+                firstDiv.id = `exampleModalCenter${event.id}`
+                firstDiv.setAttribute("tabindex", "-1")
+                firstDiv.setAttribute("role", "dialog")
+                firstDiv.setAttribute("aria-labelledby", "exampleModalCenterTitle")
+                firstDiv.setAttribute("aria-hidden", "true")
+            const secondDiv = document.createElement("div")
+                secondDiv.className = "modal-dialog modal-dialog-centered"
+                secondDiv.setAttribute("role", "document")
+            const thirdDiv = document.createElement("div")
+                thirdDiv.className = "modal-content"
+            const fourthDiv = document.createElement("div")
+                fourthDiv.className = "modal-header"
+            const modaltitle = document.createElement("div")
+                modaltitle.className = "modal-title"
+                modaltitle.id = "exampleModalLongTitle"
+                modaltitle.innerText = event.name   
+            const modalbutton = document.createElement("button")
+                modalbutton.className = "close"
+                modalbutton.setAttribute("type", "button")
+                modalbutton.setAttribute("data-dismiss", "modal")
+                modalbutton.setAttribute("aria-label", "Close")
+            const modalspan = document.createElement("span")
+                modalspan.setAttribute("aria-hidden", "true")
+                modalspan.innerText = "x"  
+            const modalbody = document.createElement("div")
+                modalbody.className = "modal-body"
+                modalbody.id = "modal-body"
+
+            const address = document.createElement("h4")
+                address.innerText = event.address
+            const modaldate = document.createElement("h4")
+                modaldate.innerText = event.date
+            const modalimage = document.createElement("img")
+                modalimage.src = event.img_url
+
+            modalbutton.append(modalspan)
+            fourthDiv.append(modaltitle, modalbutton)
+            modalbody.append(modalimage, modaldate, time, address, address2, price, h6)
+            thirdDiv.append(fourthDiv, modalbody)
+            secondDiv.append(thirdDiv)
+            firstDiv.append(secondDiv)    
+            footer.append(firstDiv)  
+
         }
         if (filterDate == null) {
             allEvents = cont_events.innerHTML
