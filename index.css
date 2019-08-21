@@ -192,6 +192,18 @@
     color: #FFF;
 }
 
+#container-footer p
+{
+    transform: translateY(-40%);
+    
+}
+
+.anchor
+{
+    position: absolute;
+    left: 0px;
+    /* top: 60px; */
+}
 
 /*-----------FOOTER END---------------*/
 
@@ -307,7 +319,7 @@
     animation-name: animatetop;
     animation-duration: 0.4s;
     height: 100%;
-    
+    border-radius: 5px;
 }
 
 #create-event-form
@@ -355,6 +367,8 @@
 {
     margin:20px;
     text-align:center; 
+    transform: translateY(80%);
+
 }
 
 
@@ -377,8 +391,5 @@
     cursor: pointer;
 }
 
-#tag-dropdown
-{
-    
-}
+
 
