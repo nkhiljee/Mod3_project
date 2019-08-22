@@ -140,7 +140,30 @@
     height: 400px !important;
     margin: 20px;
     /* border-radius: 1em !important; */
+    animation-name: example_out;
+    animation-duration: 0.5s;
+  animation-direction: reverse;  
+  animation-fill-mode: reverse;
+  box-shadow: 0 1rem 1rem rgba(0,0,0,.175)
 }
+
+.card:hover {
+    animation-name: example_in;
+    animation-duration: 0.5s;
+    animation-direction: reverse;  
+    animation-fill-mode: forwards;
+    box-shadow: 0 1rem 2rem rgba(0,0,0,.175)
+  }
+
+  @keyframes example_in {
+
+    0%  {left:0px; top:-15px; box-shadow: 0 2rem 3rem rgba(0,0,0,.375);}
+    100% {left:0px; top:0px; box-shadow: 0 1rem 1rem rgba(0,0,0,.175);}
+  }
+  @keyframes example_out {
+    0% {left:0px; top:0px; box-shadow: 0 1rem 1rem rgba(0,0,0,.175);}
+    100%  {left:0px; top:-15px; box-shadow: 0 2rem 3rem rgba(0,0,0,.375);}
+  }
 
 .card img
 {
