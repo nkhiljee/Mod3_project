@@ -255,14 +255,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
             array1.push(obj)
             plotMarkers(array1)
-            // console.log(array)
-            window.alert("Hello world!");
+            console.log(array1)
+        
         })
-
-        
-        
-        
-
     })
 
     ///////////////Create a New Event Form END/////////////////

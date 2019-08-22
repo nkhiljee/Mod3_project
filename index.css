@@ -12,13 +12,11 @@
    padding: 0 10px;
    display: flex;
    z-index: 10 !important;
-
 }
 
 .navbar-nav li
 {
    padding: 0 10px;
-
 }
 
 .navbar-nav li a
@@ -28,21 +26,17 @@
     font-family: Arial;
     font-size: 16px;
     font-family: 'Raleway', sans-serif !important;
-
 }
 
 .navbar-nav li button
 {
     float: right;
     font-family: 'Raleway', sans-serif !important;
-
 }
 
 #nav-bar ul li a:hover
 {
    text-shadow: 1px 1px #000000;
-
-
 }
 
 .nav-link
@@ -50,7 +44,6 @@
     color: #FFF!important;
     font-weight: 400;
     z-index: 10 !important;
-
     /* font-size: 18px; */
 }
 
@@ -61,7 +54,6 @@
     top: 40%;
     font-family: 'Raleway', sans-serif !important;
     z-index: 0 !important;
-
 }
 
 .carousel-caption h5
@@ -70,7 +62,6 @@
     font-weight: lighter !important;
     z-index: 0 !important;
     text-shadow: 3px 3px #000000;
-
 }
 
 .carousel-indicators 
@@ -101,7 +92,6 @@
 {
     margin-left: 5px;
     margin-right: 5px;
-
 }
 
 /*-----------EVENTS---------------*/
@@ -111,7 +101,6 @@
     padding-left: 30px;
     padding-right: 30px;
     margin-top: 20px;
-
 }
 
 
@@ -200,8 +189,7 @@
 
 #container-footer p
 {
-    transform: translateY(-40%);
-    
+    transform: translateY(-40%);  
 }
 
 .anchor
@@ -254,7 +242,6 @@
     /* float: right; */
     text-align: right;
     height: 30px;
-
 }
 
 .modal-content h3
@@ -311,8 +298,6 @@
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
     padding: 100px;
-
-    
 }
 
 
@@ -364,7 +349,6 @@
     position: right;
     padding: 5%;
     justify-items: center;
-
 } 
  
 
