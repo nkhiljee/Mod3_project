@@ -54,9 +54,9 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         })
 
-        // allEventsBtn.addEventListener("click", () => {
-        //     cont_events.innerHTML = allEvents
-        // })
+        allEventsBtn.addEventListener("click", () => {
+            cont_events.innerHTML = allEvents
+        })
 
         plotMarkers(array)
     })
@@ -127,9 +127,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 modaldate.innerText = event.date
             const modalimage = document.createElement("img")
                 modalimage.src = event.img_url
-            // const updatebtn = document.createElement("button")
-            //     updatebtn.className = "btn btn-warning"
-            //     updatebtn.innerText = "Update"
+            const sbtn = document.createElement("button")
+                sbtn.className = "btn btn-warning"
+                sbtn.innerText = "Subscribe"
             const deletebtn = document.createElement("button")
                 deletebtn.className = "btn btn-danger"
                 deletebtn.innerText = "Delete"
@@ -139,19 +139,42 @@ document.addEventListener("DOMContentLoaded", () => {
 
             modalbutton.append(modalspan)
             fourthDiv.append(modaltitle, modalbutton)
-            modalbody.append(modalimage, modaldate, time, address, address2, price, h6, deletebtn)
+            modalbody.append(modalimage, modaldate, time, address, address2, price, h6, sbtn, deletebtn)
             thirdDiv.append(fourthDiv, modalbody)
             secondDiv.append(thirdDiv)
             firstDiv.append(secondDiv)    
             footer.append(firstDiv)  
 
+            sbtn.addEventListener("click", () => {
+                newHoldingDiv = document.querySelector('#myevents')
+                fetch(`http://localhost:3000/api/v1/events/${event.id}`, {
+                    method: "PATCH",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        "user_id": 1
+                    })
+                })
+                .then(res => res.json())
+                .then((event) =>{
+                    newHoldingDiv.innerHTML = ""
+                    activeUser.events.push(event)
+                    renderMyEvents(activeUser)
+                })
+            })
 
             deletebtn.addEventListener('click', (e)=>{
-
+                newHoldingDiv = document.querySelector('#myevents')
                 fetch(`http://localhost:3000/api/v1/events/${event.id}`, {
                     method: 'DELETE'
                 })
                 .then(() =>{
+                    // activeUser.events
+                    newHoldingDiv.innerHTML = "" 
+                    var newactiveuser = activeUser.events.filter(el => el.id != event.id)
+                    activeUser.events = newactiveuser
+                    renderMyEvents(activeUser)
                     mainDiv.remove() 
 
 
@@ -180,18 +203,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 ///////////////Delete Button/////////////////
 
-                const dltBtn = document.createElement('button')
-                dltBtn.type = 'button'
-                dltBtn.className = 'btn btn-warning btn-sm'
-                dltBtn.innerText = 'DELETE'
-                dltBtn.id = 'delete-event'
+                const usBtn = document.createElement('button')
+                usBtn.type = 'button'
+                usBtn.className = 'btn btn-warning btn-sm'
+                usBtn.innerText = 'Unsubscribe'
+                usBtn.id = 'delete-event'
                 
-                holdingdiv.append(dltBtn)
-                dltBtn.addEventListener('click', (e)=>{
+                holdingdiv.append(usBtn)
+                usBtn.addEventListener('click', (e)=>{
                     
+                    // fetch(`http://localhost:3000/api/v1/events/${event.id}`, {
+                    //     method: 'DELETE'
+                    // })
+                    // .then(() =>{
+                    //     holdingdiv.remove()
+                    // })
                     fetch(`http://localhost:3000/api/v1/events/${event.id}`, {
-                        method: 'DELETE'
+                        method: "PATCH",
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            "user_id": 2
+                        })
                     })
+                    .then(res => res.json())
+                    // .then(console.log)
                     .then(() =>{
                         holdingdiv.remove()
                     })
@@ -199,7 +236,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 })
 
 
-                time.append (dltBtn)
+                time.append (usBtn)
                 holdingdiv.append(title, loc, time)
                 myevents.append(holdingdiv)
 
@@ -214,7 +251,7 @@ document.addEventListener("DOMContentLoaded", () => {
     createEventForm.addEventListener('submit', (e) => {
         e.preventDefault()
         newHoldingDiv = document.querySelector('#myevents')
-
+        window.alert("You have sucessfully created an event!")
 
         // debugger
         fetch('http://localhost:3000/api/v1/events', {

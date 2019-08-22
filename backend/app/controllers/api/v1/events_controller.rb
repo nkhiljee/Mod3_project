@@ -4,6 +4,11 @@ class Api::V1::EventsController < ApplicationController
         render json: @events
     end
 
+    def show
+        @event = Event.find(params[:id])
+        render json: @event#, include: :users
+    end
+
     def create
         @event = Event.create(event_params)
         render json: @event, status: 201
@@ -11,7 +16,8 @@ class Api::V1::EventsController < ApplicationController
 
     def update
         @event = Event.find(params[:id])
-        @event.update
+        # byebug
+        @event.update(event_params)
         render json: @event, status: 201
     end
 
