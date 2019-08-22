@@ -301,6 +301,12 @@
 
 }
 
+.modalcont
+{
+    display: flex;
+    width: 90% !important;
+
+}
 
 /* Modal Content/Box */
 .create-event-modal-content 
@@ -312,7 +318,6 @@
     border: 1px solid #888;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     height: 110%;
-
 }
 
 #create-event-form
