@@ -54,9 +54,9 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         })
 
-        allEventsBtn.addEventListener("click", () => {
-            cont_events.innerHTML = allEvents
-        })
+        // allEventsBtn.addEventListener("click", () => {
+        //     cont_events.innerHTML = allEvents
+        // })
 
         plotMarkers(array)
     })
@@ -127,34 +127,36 @@ document.addEventListener("DOMContentLoaded", () => {
                 modaldate.innerText = event.date
             const modalimage = document.createElement("img")
                 modalimage.src = event.img_url
-            const updatebtn = document.createElement("button")
-                updatebtn.className = "btn btn-warning"
-                updatebtn.innerText = "Update"
+            // const updatebtn = document.createElement("button")
+            //     updatebtn.className = "btn btn-warning"
+            //     updatebtn.innerText = "Update"
             const deletebtn = document.createElement("button")
                 deletebtn.className = "btn btn-danger"
                 deletebtn.innerText = "Delete"
                 deletebtn.id = "deleteEvent"
+                deletebtn.setAttribute("data-dismiss", "modal")
 
 
             modalbutton.append(modalspan)
             fourthDiv.append(modaltitle, modalbutton)
-            modalbody.append(modalimage, modaldate, time, address, address2, price, h6, updatebtn, deletebtn)
+            modalbody.append(modalimage, modaldate, time, address, address2, price, h6, deletebtn)
             thirdDiv.append(fourthDiv, modalbody)
             secondDiv.append(thirdDiv)
             firstDiv.append(secondDiv)    
             footer.append(firstDiv)  
 
-            // const holdingdiv = document.getElementById("holdingDiv")
-             
-            // deletebtn.addEventListener('click', (e)=>{
-            //     fetch(`http://localhost:3000/api/v1/events/${event.id}`, {
-            //         method: 'DELETE'
-            //     })
-            //     .then(() =>{
-            //         mainDiv.remove() 
-            //         holdingdiv.remove()
-            //     })
-            // })
+
+            deletebtn.addEventListener('click', (e)=>{
+
+                fetch(`http://localhost:3000/api/v1/events/${event.id}`, {
+                    method: 'DELETE'
+                })
+                .then(() =>{
+                    mainDiv.remove() 
+
+
+                })
+            })
         }
         if (filterDate == null) {
             allEvents = cont_events.innerHTML
@@ -195,6 +197,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     })
                     
                 })
+
 
                 time.append (dltBtn)
                 holdingdiv.append(title, loc, time)
@@ -256,7 +259,6 @@ document.addEventListener("DOMContentLoaded", () => {
             array1.push(obj)
             plotMarkers(array1)
             // console.log(array)
-            window.alert("Hello world!");
         })
 
         
