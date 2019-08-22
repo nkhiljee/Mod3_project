@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let activeUser
     let footer = document.getElementById("container-footer")
     let deleteEvent = document.getElementById("deleteEvent")
+    var markers = [];
+
 
     fetch(userUrl)
         .then(res => res.json())
@@ -65,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function renderEvent(event, filterDate = null){
         if (filterDate == null || filterDate == event.date) {
             const mainDiv = document.createElement("div")
-                mainDiv.className = "card shadow-lg"
+                mainDiv.className = "card"
                 mainDiv.setAttribute("data-target", `#exampleModalCenter${event.id}`)
                 mainDiv.setAttribute("data-toggle", "modal")
             const image = document.createElement("img")
@@ -161,6 +163,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     newHoldingDiv.innerHTML = ""
                     activeUser.events.push(event)
                     renderMyEvents(activeUser)
+                    let array2 = []
+                    let obj = {
+                        lat: event.lat,
+                        lng: event.long
+                    }
+                    array2.push(obj)
+                    plotMarkers(array2)
                 })
             })
 
@@ -188,6 +197,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function renderMyEvents(user) {
         if (user.id == 1) {
+            let i = 0
+
             user.events.forEach(event => {
                 const holdingdiv = document.createElement("div")
                     holdingdiv.className = "holdingDiv shadow-sm"
@@ -207,7 +218,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 usBtn.type = 'button'
                 usBtn.className = 'btn btn-warning btn-sm'
                 usBtn.innerText = 'Unsubscribe'
-                usBtn.id = 'delete-event'
+                usBtn.setAttribute("data-index", ++i)
                 
                 holdingdiv.append(usBtn)
                 usBtn.addEventListener('click', (e)=>{
@@ -229,8 +240,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     })
                     .then(res => res.json())
                     // .then(console.log)
-                    .then(() =>{
+                    .then((event) =>{
+                        // debugger
+                        markers[usBtn.dataset.index-1].setMap(null)
                         holdingdiv.remove()
+
+                        // markers[usBtn.Btn.data-index -1].map = null;
                     })
                     
                 })
@@ -377,12 +392,11 @@ document.addEventListener("DOMContentLoaded", () => {
         zoom: 11
     });
     }
-    var markers;
     var bounds;
 
     function plotMarkers(array)
     {
-    markers = [];
+    // markers = [];
     bounds = new google.maps.LatLngBounds();
 
     array.forEach(function (marker) {
