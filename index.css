@@ -455,6 +455,9 @@
 .modal-body img
 {
     margin-bottom: 10px;
+    width: 400px;
+    height: 200px;
+    /* display: fixed; */
 }
 
 .modal-body button
